@@ -20,6 +20,8 @@ public:
 	Teacher( );
 	//有参构造
 	Teacher(int empId, string name, string password);
+	//菜单
+	virtual void showSecondMenu( );
 	//查看所有预约
 	void showAllOrder( );
 	//审核预约

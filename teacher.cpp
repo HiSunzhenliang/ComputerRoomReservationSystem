@@ -7,6 +7,7 @@
 ************************************/
 #include <iostream>
 #include <string>
+#include "teacher.h"
 #include "identity.h"
 
 Teacher::Teacher( ) {
@@ -14,6 +15,12 @@ Teacher::Teacher( ) {
 }
 
 Teacher::Teacher(int empId, string name, string password) {
+	this->m_empId = empId;
+	this->m_Name = name;
+	this->m_Password = password;
+}
+
+void Teacher::showSecondMenu( ) {
 
 }
 
