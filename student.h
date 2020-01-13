@@ -8,6 +8,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <vector>
 #include "identity.h"
 
 
@@ -16,6 +17,8 @@ class Student:public Identity {
 public:
 	//学号
 	int m_id;
+	//机房信息 容器
+
 
 	//默认构造函数
 	Student( );
