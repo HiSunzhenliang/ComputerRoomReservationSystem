@@ -7,11 +7,32 @@
 ************************************/
 #pragma once
 #include <iostream>
+#include <vector>
 #include <string>
 #include "identity.h"
 
 //管理员类
 class Manager:public Identity {
 public:
-		
+	//维护两个容器，用于更新文件，查重
+	vector<Student> vStu;
+	vector<Teacher> vTea;
+	//容器初始化
+	void initVector( );
+	//默认构造
+	Manager( );
+	//有参构造
+	Manager(string name, string password);
+	//菜单
+	virtual void showSecondMenu( );
+	//添加账号
+	void addUser( );
+	//查看账号
+	void showUser( );
+	//查看机房
+	void showRoom( );
+	//清空信息
+	void cleanFile( );
+	//去重函数
+	bool isRepeat(int id, int identity);
 };
