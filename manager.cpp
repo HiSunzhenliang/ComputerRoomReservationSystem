@@ -209,7 +209,13 @@ void Manager::showRoom( ) {
 }
 
 void Manager::cleanFile( ) {
-
+	system("CLS");
+	//文件存在就先删除再重建
+	ofstream ofs(ORDER_FILE, ios::trunc);
+	ofs.close( );
+	cout << "清除成功！" << endl;
+	system("pause");
+	system("CLS");
 }
 //去重函数
 bool Manager::isRepeat(int id, int identity) {
