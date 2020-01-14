@@ -34,7 +34,7 @@ void management::showMainMenu( ) {
 	cout << "\t\t|                               |\n";
 	cout << "\t\t ===============================\n";
 }
-//选择主菜单选项
+//选择主菜单选项，根据登录返回的对象，进行调用
 void management::choseMainMenuOption( ) {
 	cout << "请输入你的选择：" ;
 	cin >> this->select;
@@ -68,7 +68,7 @@ void management::choseMainMenuOption( ) {
 		break;
 	}
 }
-//登录功能(对应操作文件，对应子类)
+//登录功能(对应操作文件，对应子类)、新建相应登录对象
 Identity* management::LogIn(string filename, int identity) {
 	Identity *person = nullptr;
 
