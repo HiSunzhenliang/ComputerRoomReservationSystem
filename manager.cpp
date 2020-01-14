@@ -200,6 +200,7 @@ void Manager::showUser( ) {
 }
 
 void Manager::showRoom( ) {
+	system("CLS");
 	cout << "所有机房信息如下： " << endl;
 	for (auto it : vCom) {
 		printRoom(it);
