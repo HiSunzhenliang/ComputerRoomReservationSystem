@@ -34,7 +34,7 @@ public:
 	void teacherMenu(Identity* &teacher);
 	//管理员选项
 	void managerMenu(Identity* &manager);
-	//预约状态
+	//预约状态,静态成员函数
 	static string orderStatus(int status);
 
 	//退出系统功能

@@ -197,7 +197,36 @@ void management::studentMenu(Identity* &student) {
 }
 //教师选项
 void management::teacherMenu(Identity* &teacher) {
-
+	while (true) {
+		//显示老师菜单
+		teacher->showSecondMenu( );
+		Teacher* tea = (Teacher*)teacher;
+		int select = 0;
+		cin >> select;
+		switch (select) {
+		case 1:
+			//查看所有预约
+			tea->showAllOrder( );
+			break;
+		case 2:
+			//审核预约
+			tea->checkOrder( );
+			break;
+		case 0:
+			//注销
+			delete teacher;
+			cout << "注销成功" << endl;
+			system("pause");
+			system("CLS");
+			return;
+			break;
+		default:
+			cout << "输入有误，请重新选择！" << endl;
+			system("pause");
+			system("CLS");
+			break;
+		}
+	}
 }
 //管理员选项
 void management::managerMenu(Identity* &manager) {
