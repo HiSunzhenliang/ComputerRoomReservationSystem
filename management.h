@@ -15,6 +15,7 @@
 #include "teacher.h"
 #include "manager.h"
 #include "management.h"
+#include "computerRoom.h"
 
 //π‹¿Ì¿‡
 class management {

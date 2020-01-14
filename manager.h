@@ -9,14 +9,19 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "management.h"
+#include "computerRoom.h"
 #include "identity.h"
 
 //管理员类
 class Manager:public Identity {
 public:
-	//维护两个容器，用于更新文件，查重
+	//维护教师学生个容器，用于更新文件，查重
 	vector<Student> vStu;
 	vector<Teacher> vTea;
+	//维护机房容器
+	vector<ComputerRoom> vCom;
+	
 	//容器初始化
 	void initVector( );
 	//默认构造
@@ -40,5 +45,5 @@ public:
 	//打印老师信息
 	void printTeacher(Teacher &t);
 	//打印机房信息
-	void printRoom( );
+	void printRoom(ComputerRoom &c);
 };

@@ -14,8 +14,11 @@
 #include "teacher.h"
 #include "manager.h"
 #include "identity.h"
+#include "management.h"
+#include "computerRoom.h"
 using namespace std;
 
+//初始化容器
 void Manager::initVector( ) {
 	//读取学生文件中信息
 	ifstream ifs;
@@ -43,6 +46,19 @@ void Manager::initVector( ) {
 		vTea.push_back(t);
 	}
 	ifs.close( );
+
+	//读取机房文件中信息
+	ifs.open(COMPUTER_FILE, ios::in);
+	if (!ifs.is_open( )) {
+		cout << "文件读取失败" << endl;
+		return;
+	}
+	vCom.clear( );
+	ComputerRoom c;
+	while (ifs >> c.m_ComId&&ifs >> c.m_MaxNum) {
+		vCom.push_back(c);
+	}
+	ifs.close( );
 }
 
 Manager::Manager( ) {
@@ -52,6 +68,7 @@ Manager::Manager( ) {
 Manager::Manager(string name, string password) {
 	this->m_Name = name;
 	this->m_Password = password;
+	//初始化容器
 	this->initVector( );
 }
 
@@ -59,6 +76,7 @@ void Manager::showSecondMenu( ) {
 	cout << "欢迎管理员：" << this->m_Name << "登录！" << endl;
 	cout << "学生当前数量为：" << vStu.size( ) << endl;
 	cout << "教师当前数量为：" << vTea.size( ) << endl;
+	cout << "机房当前数量为：" << vCom.size( ) << endl;
 	cout << "\t\t ---------------------------------\n";
 	cout << "\t\t|                                |\n";
 	cout << "\t\t|          1.添加账号            |\n";
@@ -135,7 +153,7 @@ void Manager::addUser( ) {
 	system("pause");
 	system("CLS");
 }
-
+//查看账户
 void Manager::showUser( ) {
 	system("CLS");
 	int mark = 1;
@@ -182,7 +200,12 @@ void Manager::showUser( ) {
 }
 
 void Manager::showRoom( ) {
-
+	cout << "所有机房信息如下： " << endl;
+	for (auto it : vCom) {
+		printRoom(it);
+	}
+	system("pause");
+	system("CLS");
 }
 
 void Manager::cleanFile( ) {
@@ -219,6 +242,6 @@ void Manager::printTeacher(Teacher &t) {
 	cout << "编号： " << t.m_empId << " 姓名： " << t.m_Name << " 密码： " << t.m_Password << endl;
 }
 //打印机房信息
-void Manager::printRoom( ) {
-
+void Manager::printRoom(ComputerRoom &c ) {
+	cout << "编号： " << c.m_ComId << " 容量： " << c.m_MaxNum << endl;
 }
