@@ -8,11 +8,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm>
 #include "globalFile.h"
 #include "student.h"
 #include "teacher.h"
 #include "manager.h"
 #include "identity.h"
+using namespace std;
 
 void Manager::initVector( ) {
 	//读取学生文件中信息
@@ -27,7 +29,6 @@ void Manager::initVector( ) {
 	while (ifs >> s.m_id&&ifs >> s.m_Name&&ifs >> s.m_Password) {
 		vStu.push_back(s);
 	}
-	cout << "学生当前数量为：" << vStu.size( ) << endl;
 	ifs.close( );
 
 	//读取教师文件中信息
@@ -41,7 +42,6 @@ void Manager::initVector( ) {
 	while (ifs >> t.m_empId&&ifs >> t.m_Name&&ifs >> t.m_Password) {
 		vTea.push_back(t);
 	}
-	cout << "教师当前数量为：" << vTea.size( ) << endl;
 	ifs.close( );
 }
 
@@ -57,6 +57,8 @@ Manager::Manager(string name, string password) {
 
 void Manager::showSecondMenu( ) {
 	cout << "欢迎管理员：" << this->m_Name << "登录！" << endl;
+	cout << "学生当前数量为：" << vStu.size( ) << endl;
+	cout << "教师当前数量为：" << vTea.size( ) << endl;
 	cout << "\t\t ---------------------------------\n";
 	cout << "\t\t|                                |\n";
 	cout << "\t\t|          1.添加账号            |\n";
@@ -135,7 +137,48 @@ void Manager::addUser( ) {
 }
 
 void Manager::showUser( ) {
-
+	system("CLS");
+	int mark = 1;
+	int select = 1;
+	while (mark) {
+		cout << "请输入查看账号的类型" << endl;
+		cout << "1、学生" << endl;
+		cout << "2、老师" << endl;
+		cout << "0、退出选择" << endl;
+		cin >> select;
+		switch (select) {
+		case 1:
+			system("CLS");
+			cout << "所有学生信息如下： " << endl;
+			for (auto it:vStu){
+				printStudent(it);
+			}
+			system("pause");
+			system("CLS");
+			mark = 0;
+			break;
+		case 2:
+			system("CLS");
+			cout << "所有老师信息如下： " << endl;
+			for (auto it:vTea){
+				printTeacher(it);
+			}
+			system("pause");
+			system("CLS");
+			mark = 0;
+			break;
+		case 0:
+			system("pause");
+			system("CLS");
+			return;
+			break;
+		default:
+			cout << "输入有误，请重新选择！" << endl;
+			system("pause");
+			system("CLS");
+			break;
+		}
+	}
 }
 
 void Manager::showRoom( ) {
@@ -165,5 +208,17 @@ bool Manager::isRepeat(int id, int identity) {
 		return false;
 		break;
 	}
+	return false;
 }
+//打印学生信息
+void Manager::printStudent(Student &s) {
+	cout << "学号： " << s.m_id <<" 姓名： "<< s.m_Name << " 密码： " << s.m_Password << endl;
+}
+//打印老师信息
+void Manager::printTeacher(Teacher &t) {
+	cout << "编号： " << t.m_empId << " 姓名： " << t.m_Name << " 密码： " << t.m_Password << endl;
+}
+//打印机房信息
+void Manager::printRoom( ) {
 
+}

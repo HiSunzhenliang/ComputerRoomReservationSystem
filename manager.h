@@ -35,4 +35,10 @@ public:
 	void cleanFile( );
 	//去重函数
 	bool isRepeat(int id, int identity);
+	//打印学生信息
+	void printStudent(Student &s);
+	//打印老师信息
+	void printTeacher(Teacher &t);
+	//打印机房信息
+	void printRoom( );
 };
