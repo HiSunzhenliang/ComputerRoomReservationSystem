@@ -11,6 +11,7 @@
 #include <vector>
 #include "computerRoom.h"
 #include "identity.h"
+#include "order.h"
 
 
 //学生类
@@ -20,6 +21,11 @@ public:
 	int m_id;
 	//维护机房容器
 	vector<ComputerRoom> vCom;
+	//维护预约容器
+	vector<Order> vOrd;
+
+	//初始化容器
+	void initVector( );
 
 	//默认构造函数
 	Student( );

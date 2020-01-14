@@ -240,6 +240,22 @@ void management::managerMenu(Identity* &manager) {
 		}
 	}
 }
+//预约状态
+std::string management::orderStatus(int status) {
+	// 0 取消的预约   1 审核中   2 已预约 -1 预约失败
+	if (status == 1) {
+		return "审核中";
+	}
+	else if (status == 2) {
+		return "预约成功";
+	}
+	else if (status== -1) {
+		return "审核未通过，预约失败";
+	}
+	else {
+		return "预约已取消";
+	}
+}
 
 //退出系统功能
 void management::exitSys( ) {
