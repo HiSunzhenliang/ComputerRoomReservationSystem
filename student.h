@@ -24,8 +24,10 @@ public:
 	//维护预约容器
 	vector<Order> vOrd;
 
-	//初始化容器
+	//初始化容器,文件更新容器
 	void initVector( );
+	//容器更新文件
+	void vecInitFile( );
 
 	//默认构造函数
 	Student( );

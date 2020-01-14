@@ -44,6 +44,28 @@ void Student::initVector( ) {
 	}
 	ifs.close( );
 }
+//容器更新文件
+void Student::vecInitFile( ) {
+	if (vOrd.size( ) == 0) {
+		cout << "无文件记录！";
+		system("pause");
+		return;
+	}
+	ofstream ofs(ORDER_FILE, ios::out | ios::trunc);
+	if (!ofs.is_open()){
+		cout << "未打开文件！";
+		system("pause");
+	}
+	for (auto it : vOrd) {
+		ofs << it.date << " ";
+		ofs << it.interval << " ";
+		ofs << it.stuId << " ";
+		ofs << it.stuName << " ";
+		ofs << it.roomId << " ";
+		ofs << it.status << endl;
+	}
+	ofs.close( );
+}
 
 //默认构造函数
 Student::Student( ) {
@@ -142,8 +164,10 @@ void Student::showMyOrder( ) {
 	if (vOrd.size( ) == 0) {
 		cout << "无预约记录！" << endl;
 	}
+	int i = 0;
 	for (auto it:vOrd){
 		if (it.stuId == this->m_id) {
+			cout << ++i << " ";
 			cout << "预约日期： 周" << it.date << " ";
 			cout << "时段：" << it.interval << " ";
 			cout << "机房：" << it.roomId << " ";
@@ -159,8 +183,13 @@ void Student::showAllOrder( ) {
 	cout << "所有记录：" << endl;
 	if (vOrd.size( ) == 0) {
 		cout << "无预约记录！" << endl;
+		system("pause");
+		system("CLS");
+		return;
 	}
+	int i = 0;
 	for (auto it : vOrd) {
+		cout << ++i << " ";
 		cout << "预约日期： 周" << it.date << " ";
 		cout << "时段：" << it.interval << " ";
 		cout << "学生编号：" << it.stuId << " ";
@@ -173,6 +202,52 @@ void Student::showAllOrder( ) {
 }
 //取消预约
 void Student::cancelOrder( ) {
+	system("CLS");
+	cout << "所有记录：" << endl;
+	if (vOrd.size( ) == 0) {
+		cout << "无预约记录！" << endl;
+		system("pause");
+		system("CLS");
+		return;
+	}
+	int i = 0;
+	for (auto it : vOrd) {
+		if (it.stuId == this->m_id) {
+			cout << ++i << " ";
+			cout << "预约日期： 周" << it.date << " ";
+			cout << "时段：" << it.interval << " ";
+			cout << "机房：" << it.roomId << " ";
+			cout << "预约状态：" << management::orderStatus(it.status) << endl;
+		}
+	}
+	cout << "审核中或预约成功的记录可以取消，请输入取消的记录" << endl;
+	cout << "请输入取消的记录: " << endl;
+	/*cout << "i=" <<i<< endl;*/
+	int select = 0;
+	int j = 0;
+	while (true) {
+		cin >> select;
+		if (select >= 1 && select <= i) {	//++++++++++++++++
+			for (auto &it : vOrd) {			//auto &it,才可修改
+				j++;						//++++++++++++++++
+				if (j == select) {
 
+					it.status = 0;
+
+					//vOrd[select - 1].status = 0;
+					this->vecInitFile( );
+					this->initVector( );
+					cout << "已取消预约" << endl;
+					break;
+				}
+			}
+			break;
+		}
+		else {
+			cout << "输入有误，请重新输入" << endl;
+		}
+	}
+	system("pause");
+	system("CLS");
 }
 
